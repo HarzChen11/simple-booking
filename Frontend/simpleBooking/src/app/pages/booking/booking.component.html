@@ -1,0 +1,106 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">MAKE A RESERVATION</h2>
+  <p class="text-center mb-5">Select your details and we’ll try to get the best seats for you.</p>
+
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Party size</mat-label>
+        <mat-select [(ngModel)]="formData.partySize" name="partySize">
+          <mat-option *ngFor="let size of partySizes" [value]="size">{{ size }} guests</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="formData.date" name="date" required />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Time</mat-label>
+        <mat-select [(ngModel)]="formData.time" name="time">
+          <mat-option *ngFor="let t of timeSlots" [value]="t">{{ t }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-7">
+      <h4>COMPLETE YOUR RESERVATION</h4>
+      <p><strong>PLEASE FILL IN YOUR DETAILS:</strong></p>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <input type="text" class="form-control" placeholder="First name *" [(ngModel)]="formData.firstName" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <input type="text" class="form-control" placeholder="Last name *" [(ngModel)]="formData.lastName" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <input type="tel" class="form-control" placeholder="Phone number *" [(ngModel)]="formData.phone" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <input type="email" class="form-control" placeholder="Email address *" [(ngModel)]="formData.email" />
+        </div>
+        <div class="col-12 mb-3">
+          <input type="text" class="form-control" placeholder="Any notes?" [(ngModel)]="formData.note" />
+        </div>
+        <div class="col-12 mb-3 text-muted">
+          Please give us a call or send a text message if you are running late.
+        </div>
+        <div class="col-12">
+          <button class="btn btn-warning w-100">Complete Reservation</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-5">
+      <div class="bg-light p-3 rounded shadow-sm mb-3 text-muted">
+        Your reservation will be held for you for <strong>10:00</strong> minutes.
+      </div>
+
+      <!-- <div class="border p-3 rounded shadow-sm">
+        <strong class="d-block mb-2">RESERVATION DETAILS:</strong>
+        <div *ngIf="formData.date">
+          {{ formData.date | date: 'fullDate' }}, {{ formData.time }}
+        </div>
+        <div>{{ formData.partySize }} guests</div>
+        <div>Bourke Street</div>
+        <a href="#" class="mt-3 d-block">Change Selection</a>
+      </div> -->
+      <div class="border p-3 rounded shadow-sm">
+        <strong class="d-block mb-3">RESERVATION DETAILS:</strong>
+
+        <div class="mb-3"><strong>Address :</strong> 616 Bourke street, Surry hills 2010</div>
+
+        <div class="mb-3">
+          <strong>First Name :</strong> {{ formData.firstName || '-' }}
+        </div>
+        <div class="mb-3">
+          <strong>Last Name :</strong> {{ formData.lastName || '-' }}
+        </div>
+        <div class="mb-3">
+          <strong>Party Size :</strong> {{ formData.partySize ? formData.partySize + ' guests' : '-' }}
+        </div>
+        <div class="mb-3">
+          <strong>Date :</strong> {{ formData.date ? (formData.date | date: 'fullDate') : '-' }}
+        </div>
+        <div class="mb-3">
+          <strong>Time :</strong> {{ formData.time || '-' }}
+        </div>
+
+        <div class="mt-4">
+          <a href="#" class="text-primary">Change Selection</a>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
